@@ -1,7 +1,7 @@
-# Evansims
+# evansims.com
 
-This README outlines the details of collaborating on this Ember application.
-A short introduction of this app could easily go here.
+This is the source for my personal website, [evansims.com](http://evansims.com).
+It's just a simple Ember application at this point, nothing fancy.
 
 ## Prerequisites
 
