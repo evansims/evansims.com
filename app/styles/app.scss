@@ -1,0 +1,248 @@
+$swift-out: cubic-bezier(.55, 0, .1, 1);
+$bloop: cubic-bezier(.325, -.075, 0, 1.65);
+
+$big-size: 1.5rem;
+$small-size: 0.8rem;
+
+$background-color: #f9f9f9;
+$emphasis-color: #000;
+$normal-color: #444;
+$faded-color: #a3a3a3;
+$border-color: #eaeaea;
+$primary-color: #D74142;
+
+$brands: twitter #55acee, github #4183c4, medium rgba(#000, 0.8), facebook #3b5998, tumblr #35465c, instagram #3f729b, twitch #6441a5, stream #6a737b;
+
+html, body {
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 400;
+  background: $background-color;
+  color: $normal-color;
+
+  &, #identity {
+    width: 100%; height: 100%;
+  }
+}
+
+::selection {
+  background: $normal-color;
+  color: $background-color;
+}
+
+a:link, a:active, a:visited, a:hover {
+  color: $primary-color;
+}
+
+hr {
+  display: block;
+  margin: 0;
+  border: none;
+  height: 1px;
+  background: $border-color;
+}
+
+#top {
+  position: fixed;
+  z-index: 4;
+  width: 100%;
+  top: 0; left: 0;
+  height: 3px;
+  background: $primary-color;
+}
+
+#top-menu {
+  position: fixed;
+  z-index: 4;
+  top: 1rem; left: 1rem;
+  margin-top: 3px;
+  background: $normal-color;
+  color: $background-color;
+  will-change: background, color;
+  transition: background 150ms $swift-out, transform 150ms $bloop;
+  width: 3rem; height: 3rem; line-height: 3rem;
+  text-align: center;
+  transform: scale(1.0);
+
+  &:hover {
+    background: $primary-color;
+    transform: scale(1.1);
+  }
+}
+
+#identity {
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: table;
+  z-index: 3;
+  color: $faded-color;
+
+  // background-image: url('/evansims.png');
+  // background-repeat: no-repeat;
+  // background-position: bottom left; //bottom left;
+  // background-size: contain; //540px 960px;
+
+  img.avatar {
+    max-width: 128px; height: auto;
+    border-radius: 50%;
+    // will-change: transform;
+    //
+    // transition: transform 150ms $bloop;
+    // transform: scale(1.0);
+    //
+    // &:hover {
+    //   transform: scale(1.2);
+    // }
+  }
+
+  div.wrapper {
+    display: table-cell;
+    vertical-align: middle;
+    text-align: center;
+  }
+
+  div.modal {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 2rem 2rem 0 2rem;
+    // background: rgba($background-color, 0.9);
+    // background: #000;
+    // color: #fff;
+
+    @media only screen and (max-width: 40em) {
+      text-align: left;
+
+      p.avatar {
+        img.avatar {
+          max-width: 64px;
+        }
+      }
+    }
+  }
+
+  h1 {
+    font-weight: 600;
+    // text-transform: uppercase;
+    font-size: $big-size;
+    // margin: 0;
+    color: $emphasis-color;
+
+    // a {
+    //   display: inline-block;
+    //   padding: 0.45rem 0.75rem;
+    //   margin-bottom: 1rem;
+    //   color: $emphasis-color;
+    //   border: 2px solid $emphasis-color;
+    //   border-radius: 3px;
+    // }
+  }
+
+  ul, li {
+    margin-bottom: 0 !important;
+    line-height: 1;
+    white-space: nowrap;
+  }
+
+  a.button {
+    display: block;
+    width: 50px;
+    padding: 1rem 0;
+    position: relative;
+    background: transparent;
+    transition: color 150ms $swift-out, background 150ms $swift-out;
+    text-align: center;
+    border: none;
+    color: $faded-color;
+
+    will-change: color, background;
+
+    i.fa, span {
+      display: block;
+    }
+
+    i.fa {
+      width: 100%;
+      will-change: transform;
+      transition: transform 150ms $bloop;
+      font-size: $big-size;
+      transform: scale(0.75);
+    }
+
+    span {
+      position: absolute;
+      width: 6rem;
+      text-align: center;
+      bottom: -0.25rem;
+      left: 50%;
+      margin-left: -3rem;
+      opacity: 0;
+      font-size: $small-size;
+      pointer-events: none;
+
+      will-change: transform, opacity;
+      transition: transform 150ms ease-out 200ms, opacity 150ms ease-out 200ms;
+      transform-style: preserve-3d;
+
+      -webkit-transform: rotateX(90deg); // translateZ(-50px);
+      transform: rotateX(90deg); // translateZ(-50px);
+    }
+
+    &:hover {
+      color: #000;
+
+      @each $brand in $brands {
+        &.#{nth($brand, 1)} {
+          color: nth($brand, 2);
+        }
+      }
+
+      i.fa {
+        transform: scale(1.0);
+        // font-size: 1.5rem;
+      }
+
+      span {
+        opacity: 1.0;
+        -webkit-transform: rotateX(0);
+	      transform: rotateX(0);
+      }
+    }
+  }
+}
+
+#content {
+  position: relative;
+  padding-top: 98vh;
+  z-index: 2;
+  background: $background-color;
+  // border-top: 1px solid $border-color;
+}
+
+#outlet {
+  height: 600px;
+  background: red;
+}
+
+#biography {
+  padding: 1.5rem 0;
+
+  img {
+    border-radius: 50%;
+  }
+
+  h2 {
+    font-size: $big-size
+  }
+}
+
+#copyright {
+  p {
+    padding: 1rem 2rem;
+    font-size: $small-size;
+    color: $faded-color;
+
+    span {
+      display: inline-block !important;
+    }
+  }
+}
